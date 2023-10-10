@@ -1,0 +1,56 @@
+module top_module(
+    input in,
+    input [1:0] state,
+    output [1:0] next_state,
+    output out); //
+
+    parameter A=0, B=1, C=2, D=3;
+    reg[1:0] n_state;
+    reg outp;
+    always @(*) begin
+        case(state)
+            A:begin
+                outp<=0;
+                if (in) begin
+                    n_state<=B;
+                end
+                else begin
+                    n_state<=A;
+                end
+            end
+            B:begin
+                outp<=0;
+                if (in) begin
+                    n_state<=B;
+                end
+                else begin
+                    n_state<=C;
+                end
+            end
+            C:begin
+                outp<=0;
+                if (in) begin
+                    n_state<=D;
+                end
+                else begin
+                    n_state<=A;
+                end
+            end
+            D:begin
+                outp<=1;
+                if (in) begin
+                    n_state<=B;
+                end
+                else begin
+                    n_state<=C;
+                end
+            end
+        endcase
+        // State transition logic
+    end
+	assign next_state=n_state;
+    
+    
+    assign out=outp;
+
+endmodule
